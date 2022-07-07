@@ -15,4 +15,12 @@ public class User {
     private String password;
     private boolean isadmin;
 
+    public Integer getUserid(){
+    	return userid;
+    }
+
+    public Boolean getIsAdmin(){
+    	return isadmin;
+    }
+
 }

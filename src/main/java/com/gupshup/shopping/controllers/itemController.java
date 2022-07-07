@@ -26,6 +26,17 @@ public class itemController{
    	  return itemRepository.items();
    }
 
+   @GetMapping("/items/{search}")
+   public List<Item> itemSearch(@PathVariable("search") String search){
+
+      System.out.println(search.split("="));
+
+      String searchitem = search.split("=")[0];
+      String searchvalue = search.split("=")[1];
+
+      return itemRepository.itemSearch(searchitem,searchvalue);
+   }
+
    @PostMapping("/additem")
    public String addItem(@RequestBody String itemjson){
       
@@ -36,13 +47,18 @@ public class itemController{
       return itemRepository.addItem(itemdata);
     }
 
+    @GetMapping("/category")
+    public List<String> itemCategory(){
+      return itemRepository.itemCategory();
+    }
+
     @PostMapping("/updateitem")
     public String updateItem(@RequestBody String itemjson){
       
       Gson gson = new Gson();
       Type mapType = new TypeToken<Map<String,String>>() {}.getType();
       Map<String,String> itemdata = gson.fromJson(itemjson,mapType);
-
+      
       return itemRepository.updateItem(itemdata);
     }
    

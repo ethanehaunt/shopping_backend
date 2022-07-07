@@ -18,8 +18,15 @@ import java.util.Map;
 @RestController
 public class cartController{
 
-   @Autowired
-   CartRepository cartRepository;
+    @Autowired
+    CartRepository cartRepository;
+
+    @GetMapping("/mycart")
+    public List<Map<String,Object>> myCart(){
+      
+      int userid = 1;
+      return cartRepository.myCart(userid);
+    }
 
     @PostMapping("/addtocart")
     public String addToCart(@RequestBody String cartjson){

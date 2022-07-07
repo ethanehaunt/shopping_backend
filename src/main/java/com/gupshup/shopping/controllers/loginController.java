@@ -2,8 +2,10 @@ package com.gupshup.shopping.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import com.gupshup.shopping.dao.UserRepository;
 import com.gupshup.shopping.entity.User;
@@ -20,7 +22,7 @@ public class loginController{
    UserRepository userRepository;
 
     @PostMapping("/login")
-    public String login(@RequestBody String loginjson){
+    public Map<String,String> login(@RequestBody String loginjson){
       
       Gson gson = new Gson();
       Type mapType = new TypeToken<Map<String,String>>() {}.getType();
@@ -29,9 +31,11 @@ public class loginController{
       return userRepository.login(logindata);
     }
 
-    
-    
 
-  
+    @GetMapping("/auth")
+    public Map<String,Boolean> Authenticate(@RequestAttribute("user_token") String user_token){
+      return userRepository.Authenticate(user_token);
+    }
+
 
 }

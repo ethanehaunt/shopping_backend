@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Item {
 
 
-    private int itemid;
+    private int _id;
     private String product;
     private String company;
     private String color;
@@ -18,7 +18,8 @@ public class Item {
     private String description;
     private String image;
     private boolean isbestseller;
-    private boolean isNew;
+    private boolean isnew;
+    private boolean inStock;
     private int rating;
 
 }
