@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import com.gupshup.shopping.dao.UserRepository;
+import com.gupshup.shopping.util.ValidateUtil;
 import com.gupshup.shopping.entity.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -31,10 +32,9 @@ public class loginController{
       return userRepository.login(logindata);
     }
 
-
     @GetMapping("/auth")
     public Map<String,Boolean> Authenticate(@RequestAttribute("user_token") String user_token){
-      return userRepository.Authenticate(user_token);
+      return ValidateUtil.Authenticate(user_token);
     }
 
 
