@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg
+PUBLIC "-//W3C//DTD SVG 1.1//EN"
+       "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg viewBox="148 67 415 459" width="267px" height="392px" xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <rect width="90" height="20" x="163" y="204" style="fill:#007;stroke:black;"/>
+   <text width="90" height="20" x="168" y="218" style="fill:#fff;" font-family="Arial" font-size="16px"> items</text>
+   <rect width="90" height="20" x="163" y="224" style="fill:#aea;stroke:black;"/>
+   <text width="90" height="20" x="168" y="238" style="fill:black;" font-family="Arial" font-size="16px">itemid</text>
+   <rect width="90" height="20" x="163" y="244" style="fill:none;stroke:black;"/>
+   <text width="90" height="20" x="168" y="258" style="fill:black;" font-family="Arial" font-size="16px">product</text>
+   <rect width="90" height="20" x="163" y="264" style="fill:none;stroke:black;"/>
+   <text width="90" height="20" x="168" y="278" style="fill:black;" font-family="Arial" font-size="16px">company</text>
+   <rect width="90" height="20" x="163" y="284" style="fill:none;stroke:black;"/>
+   <text width="90" height="20" x="168" y="298" style="fill:black;" font-family="Arial" font-size="16px">color</text>
+   <rect width="90" height="20" x="163" y="304" style="fill:none;stroke:black;"/>
+   <text width="90" height="20" x="168" y="318" style="fill:black;" font-family="Arial" font-size="16px">price</text>
+   <rect width="90" height="20" x="163" y="324" style="fill:none;stroke:black;"/>
+   <text width="90" height="20" x="168" y="338" style="fill:black;" font-family="Arial" font-size="16px">description</text>
+   <rect width="90" height="20" x="163" y="344" style="fill:none;stroke:black;"/>
+   <text width="90" height="20" x="168" y="358" style="fill:black;" font-family="Arial" font-size="16px">image</text>
+   <rect width="90" height="20" x="163" y="364" style="fill:none;stroke:black;"/>
+   <text width="90" height="20" x="168" y="378" style="fill:black;" font-family="Arial" font-size="16px">isbestseller</text>
+   <rect width="90" height="20" x="163" y="384" style="fill:none;stroke:black;"/>
+   <text width="90" height="20" x="168" y="398" style="fill:black;" font-family="Arial" font-size="16px">isNew</text>
+   <rect width="90" height="20" x="163" y="404" style="fill:none;stroke:black;"/>
+   <text width="90" height="20" x="168" y="418" style="fill:black;" font-family="Arial" font-size="16px">inStock</text>
+   <rect width="90" height="20" x="163" y="424" style="fill:none;stroke:black;"/>
+   <text width="90" height="20" x="168" y="438" style="fill:black;" font-family="Arial" font-size="16px">rating</text>
+   <rect width="53" height="20" x="166" y="82" style="fill:#007;stroke:black;"/>
+   <text width="53" height="20" x="171" y="96" style="fill:#fff;" font-family="Arial" font-size="16px"> mycart</text>
+   <rect width="53" height="20" x="166" y="102" style="fill:#aea;stroke:black;"/>
+   <text width="53" height="20" x="171" y="116" style="fill:black;" font-family="Arial" font-size="16px">cartid</text>
+   <rect width="53" height="20" x="166" y="122" style="fill:none;stroke:black;"/>
+   <text width="53" height="20" x="171" y="136" style="fill:black;" font-family="Arial" font-size="16px">userid</text>
+   <rect width="53" height="20" x="166" y="142" style="fill:none;stroke:black;"/>
+   <text width="53" height="20" x="171" y="156" style="fill:black;" font-family="Arial" font-size="16px">qty</text>
+   <rect width="53" height="20" x="166" y="162" style="fill:none;stroke:black;"/>
+   <text width="53" height="20" x="171" y="176" style="fill:black;" font-family="Arial" font-size="16px">itemid</text>
+   <rect width="78" height="20" x="322" y="82" style="fill:#007;stroke:black;"/>
+   <text width="78" height="20" x="327" y="96" style="fill:#fff;" font-family="Arial" font-size="16px"> users</text>
+   <rect width="78" height="20" x="322" y="102" style="fill:#aea;stroke:black;"/>
+   <text width="78" height="20" x="327" y="116" style="fill:black;" font-family="Arial" font-size="16px">userid</text>
+   <rect width="78" height="20" x="322" y="122" style="fill:none;stroke:black;"/>
+   <text width="78" height="20" x="327" y="136" style="fill:black;" font-family="Arial" font-size="16px">email</text>
+   <rect width="78" height="20" x="322" y="142" style="fill:none;stroke:black;"/>
+   <text width="78" height="20" x="327" y="156" style="fill:black;" font-family="Arial" font-size="16px">password</text>
+   <rect width="78" height="20" x="322" y="162" style="fill:none;stroke:black;"/>
+   <text width="78" height="20" x="327" y="176" style="fill:black;" font-family="Arial" font-size="16px">isadmin</text>
+</svg>
