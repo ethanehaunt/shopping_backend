@@ -26,8 +26,10 @@ public class UserRepository {
         
         List<User> user = jdbcTemplate.query(SELECT_USER, (rs, rowNum) -> {
             return new User(rs.getInt("userid"),
+                    rs.getString("name"),
                     rs.getString("email"),
                     rs.getString("password"),
+                    rs.getString("authToken"),
                     rs.getBoolean("isadmin")
                     );
         },logindata.get("email"),logindata.get("password"));

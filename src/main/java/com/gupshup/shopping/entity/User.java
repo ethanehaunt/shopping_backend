@@ -11,8 +11,10 @@ public class User {
 
 
     private int userid;
+    private String name;
     private String email;
     private String password;
+    private String authToken;
     private boolean isadmin;
 
     public Integer getUserid(){

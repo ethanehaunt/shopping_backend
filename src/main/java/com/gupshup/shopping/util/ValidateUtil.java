@@ -17,7 +17,6 @@ public class ValidateUtil {
 
     public static String doGenerateToken(Map<String, Object> claims, String subject) {
 
-        System.out.println("utll----------------");
         return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
                 .signWith(SignatureAlgorithm.HS512, secret).compact();
