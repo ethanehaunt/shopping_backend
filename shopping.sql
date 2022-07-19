@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 07, 2022 at 03:30 PM
+-- Generation Time: Jul 19, 2022 at 10:15 PM
 -- Server version: 8.0.21-0ubuntu0.20.04.4
 -- PHP Version: 7.4.3
 
@@ -57,6 +57,32 @@ INSERT INTO `items` (`itemid`, `product`, `company`, `color`, `price`, `descript
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `messageid` int NOT NULL,
+  `message` varchar(255) NOT NULL,
+  `scheduled_at` timestamp(6) NOT NULL,
+  `destination_phone_number` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `userid` int NOT NULL,
+  `created_at` timestamp(6) NULL DEFAULT NULL,
+  `scheduled_status` tinyint(1) DEFAULT NULL,
+  `submitted_at` timestamp(6) NULL DEFAULT NULL,
+  `submitted_status` int DEFAULT NULL,
+  `whatsapp_api_message_id` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`messageid`, `message`, `scheduled_at`, `destination_phone_number`, `userid`, `created_at`, `scheduled_status`, `submitted_at`, `submitted_status`, `whatsapp_api_message_id`) VALUES
+(20, 'message to send for scheduling', '2022-07-19 16:26:00.000000', '9163214034', 2, '2022-07-18 14:41:07.000000', 0, '2022-07-19 16:26:06.000000', 202, '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `mycart`
 --
 
@@ -73,7 +99,9 @@ CREATE TABLE `mycart` (
 
 INSERT INTO `mycart` (`cartid`, `userid`, `qty`, `itemid`) VALUES
 (18, 1, 14, 5),
-(19, 1, 3, 2);
+(19, 1, 6, 2),
+(20, 2, 2, 2),
+(21, 2, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -83,8 +111,10 @@ INSERT INTO `mycart` (`cartid`, `userid`, `qty`, `itemid`) VALUES
 
 CREATE TABLE `users` (
   `userid` int NOT NULL,
+  `name` varchar(200) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
+  `authToken` varchar(200) NOT NULL,
   `isadmin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -92,9 +122,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userid`, `email`, `password`, `isadmin`) VALUES
-(1, 'somen.das@gupshup.io', 'somend', 1),
-(2, 'dassomen1437@gmail.com', 'somend', 0);
+INSERT INTO `users` (`userid`, `name`, `email`, `password`, `authToken`, `isadmin`) VALUES
+(1, 'Somen Admin', 'somen.das@gupshup.io', 'somend', '', 1),
+(2, 'Somen User', 'dassomen1437@gmail.com', 'somend', '', 0);
 
 --
 -- Indexes for dumped tables
@@ -105,6 +135,12 @@ INSERT INTO `users` (`userid`, `email`, `password`, `isadmin`) VALUES
 --
 ALTER TABLE `items`
   ADD PRIMARY KEY (`itemid`);
+
+--
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`messageid`);
 
 --
 -- Indexes for table `mycart`
@@ -129,10 +165,16 @@ ALTER TABLE `items`
   MODIFY `itemid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `messageid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
 -- AUTO_INCREMENT for table `mycart`
 --
 ALTER TABLE `mycart`
-  MODIFY `cartid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `cartid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`

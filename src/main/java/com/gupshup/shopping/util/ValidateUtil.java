@@ -1,5 +1,6 @@
 package com.gupshup.shopping.util;
 
+import org.springframework.stereotype.Service;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -9,6 +10,7 @@ import java.util.function.Function;
 import java.util.Map;
 import java.util.HashMap;
 
+@Service
 public class ValidateUtil {
 	
 	private static final long serialVersionUID = -2550185165626007488L;

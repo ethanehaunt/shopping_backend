@@ -20,6 +20,7 @@ import java.util.Map;
 @RestController
 public class cartController{
     
+    @Autowired
     private ValidateUtil validateUtil;
     
     @Autowired
@@ -27,7 +28,7 @@ public class cartController{
 
     @GetMapping("/mycart")
     public List<Map<String,Object>> myCart(@RequestAttribute("user_token") String user_token){
-      return cartRepository.myCart(Integer.parseInt(ValidateUtil.getUserID(user_token)));
+      return cartRepository.myCart(Integer.parseInt(validateUtil.getUserID(user_token)));
     }
 
     @PostMapping("/addtocart")
@@ -37,7 +38,7 @@ public class cartController{
       Type mapType = new TypeToken<Map<String,String>>() {}.getType();
       Map<String,String> cartdata = gson.fromJson(cartjson,mapType);
 
-      return cartRepository.addToCart(Integer.parseInt(ValidateUtil.getUserID(user_token)),cartdata);
+      return cartRepository.addToCart(Integer.parseInt(validateUtil.getUserID(user_token)),cartdata);
     }
 
     @PostMapping("/updatemycart")
@@ -47,7 +48,7 @@ public class cartController{
       Type mapType = new TypeToken<Map<String,String>>() {}.getType();
       Map<String,String> cartdata = gson.fromJson(cartjson,mapType);
 
-      return cartRepository.updateCart(Integer.parseInt(ValidateUtil.getUserID(user_token)),cartdata);
+      return cartRepository.updateCart(Integer.parseInt(validateUtil.getUserID(user_token)),cartdata);
     }
 
     @DeleteMapping("/removefromcart/{_id}")
@@ -57,7 +58,7 @@ public class cartController{
 
     @DeleteMapping("/removecart")
     public String removeCart(@RequestAttribute("user_token") String user_token){
-      return cartRepository.removeCart(Integer.parseInt(ValidateUtil.getUserID(user_token)));
+      return cartRepository.removeCart(Integer.parseInt(validateUtil.getUserID(user_token)));
     }
 
     

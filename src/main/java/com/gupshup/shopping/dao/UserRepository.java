@@ -22,6 +22,9 @@ public class UserRepository {
     @Qualifier("shoppingJdbcTemplate")
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    private ValidateUtil validateUtil;
+
     public Map<String,String> login(Map<String,String> logindata) {
         
         List<User> user = jdbcTemplate.query(SELECT_USER, (rs, rowNum) -> {
@@ -39,7 +42,7 @@ public class UserRepository {
         if (user.size() > 0) {
             
             Map<String, Object> claims = new HashMap<>();
-            userDetail.put("user_token",ValidateUtil.doGenerateToken(claims, user.get(0).getUserid().toString()));
+            userDetail.put("user_token",validateUtil.doGenerateToken(claims, user.get(0).getUserid().toString()));
             userDetail.put("isadmin",user.get(0).getIsAdmin().toString());
         }
         else{

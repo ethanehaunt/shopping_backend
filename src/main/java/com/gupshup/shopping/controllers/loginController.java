@@ -19,8 +19,11 @@ import java.util.Map;
 @RestController
 public class loginController{
 
-   @Autowired
-   UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    private ValidateUtil validateUtil;
 
     @PostMapping("/login")
     public Map<String,String> login(@RequestBody String loginjson){
@@ -34,7 +37,7 @@ public class loginController{
 
     @GetMapping("/auth")
     public Map<String,Boolean> Authenticate(@RequestAttribute("user_token") String user_token){
-      return ValidateUtil.Authenticate(user_token);
+      return validateUtil.Authenticate(user_token);
     }
 
 

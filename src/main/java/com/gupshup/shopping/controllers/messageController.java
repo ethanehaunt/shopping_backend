@@ -15,8 +15,11 @@ import java.util.Map;
 @RestController
 public class messageController{
 
-   @Autowired
-   MessageRepository messageRepository;
+    @Autowired
+    MessageRepository messageRepository;
+
+    @Autowired
+    private ValidateUtil validateUtil;
 
     @PostMapping("/message")
     public String sendMessage(@RequestAttribute("user_token") String user_token,@RequestBody String messagejson){
@@ -25,7 +28,7 @@ public class messageController{
       Type mapType = new TypeToken<Map<String,String>>() {}.getType();
       Map<String,String> messagedata = gson.fromJson(messagejson,mapType);
       
-      return messageRepository.storeMessage(Integer.parseInt(ValidateUtil.getUserID(user_token)),messagedata);
+      return messageRepository.storeMessage(Integer.parseInt(validateUtil.getUserID(user_token)),messagedata);
 
     }
     

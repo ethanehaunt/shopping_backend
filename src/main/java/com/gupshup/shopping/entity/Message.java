@@ -19,7 +19,7 @@ public class Message {
     private Timestamp created_at;
     private boolean scheduled_status;
     private Timestamp submitted_at;
-    private boolean submitted_status;
+    private int submitted_status;
     private String whatsapp_api_message_id ;
 
     public Integer getMessageID(){
