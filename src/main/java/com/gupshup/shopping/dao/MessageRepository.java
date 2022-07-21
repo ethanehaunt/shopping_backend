@@ -15,9 +15,9 @@ import java.util.List;
 @Repository
 public class MessageRepository {
     
-    private static final String STORE_MESSAGE = "INSERT INTO messages(message,scheduled_at,destination_phone_number,userid,created_at,scheduled_status,submitted_at,submitted_status,whatsapp_api_message_id) VALUES (?,?,?,?,?,?,?,?,?)";
+    private static final String STORE_MESSAGE = "INSERT INTO messages(message,scheduled_at,destination_phone_number,userid,created_at,scheduled_status,submitted_at,submitted_status_code,submitted_status,whatsapp_api_message_id) VALUES (?,?,?,?,?,?,?,?,?,?)";
     private static final String SELECT_MESSAGE = "SELECT * FROM messages WHERE scheduled_at < ? AND scheduled_status = 1";
-    private static final String UPDATE_MESSAGE = "UPDATE messages SET scheduled_status=?,submitted_at=?,submitted_status=? WHERE messageid = ?";
+    private static final String UPDATE_MESSAGE = "UPDATE messages SET scheduled_status=?,submitted_at=?,submitted_status_code=?,submitted_status=?,whatsapp_api_message_id=? WHERE messageid = ?";
 
     @Autowired
     @Qualifier("shoppingJdbcTemplate")
@@ -29,7 +29,7 @@ public class MessageRepository {
     public String storeMessage(int userid,Map<String,String> messagedata){
 
       SimpleDateFormat DateFor = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-      int response = jdbcTemplate.update(STORE_MESSAGE,messagedata.get("message"),messagedata.get("scheduled_at"),messagedata.get("phonenumber"),userid,DateFor.format(new Date()),1,DateFor.format(new Date()),0,"");
+      int response = jdbcTemplate.update(STORE_MESSAGE,messagedata.get("message"),messagedata.get("scheduled_at"),messagedata.get("phonenumber"),userid,DateFor.format(new Date()),1,DateFor.format(new Date()),0,"","");
       return "success";
     }
 
@@ -47,7 +47,8 @@ public class MessageRepository {
                     rs.getTimestamp("created_at"),
                     rs.getBoolean("scheduled_status"),
                     rs.getTimestamp("submitted_at"),
-                    rs.getInt("submitted_status"),
+                    rs.getInt("submitted_status_code"),
+                    rs.getString("submitted_status"),
                     rs.getString("whatsapp_api_message_id")
                     );
         },currentdate);
@@ -67,10 +68,10 @@ public class MessageRepository {
         SimpleDateFormat DateFor = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         //getting the API response
-        status = messageUtill.sendWhatsAppMessage(msg);
+        Map<String,String> messageResponse = messageUtill.sendWhatsAppMessage(msg);
 
-        System.out.println("response status from api  - "+ status);
-        int response = jdbcTemplate.update(UPDATE_MESSAGE,0,DateFor.format(new Date()),status,msg.getMessageID());
+        System.out.println("response status from api  - "+ messageResponse);
+        int response = jdbcTemplate.update(UPDATE_MESSAGE,0,DateFor.format(new Date()),Integer.parseInt(messageResponse.get("statuscode")),messageResponse.get("status"),messageResponse.get("messageId"),msg.getMessageID());
         
     }
 

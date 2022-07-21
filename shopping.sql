@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 19, 2022 at 10:15 PM
+-- Generation Time: Jul 21, 2022 at 01:06 PM
 -- Server version: 8.0.21-0ubuntu0.20.04.4
 -- PHP Version: 7.4.3
 
@@ -69,7 +69,8 @@ CREATE TABLE `messages` (
   `created_at` timestamp(6) NULL DEFAULT NULL,
   `scheduled_status` tinyint(1) DEFAULT NULL,
   `submitted_at` timestamp(6) NULL DEFAULT NULL,
-  `submitted_status` int DEFAULT NULL,
+  `submitted_status_code` int NOT NULL,
+  `submitted_status` varchar(50) DEFAULT NULL,
   `whatsapp_api_message_id` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -77,8 +78,12 @@ CREATE TABLE `messages` (
 -- Dumping data for table `messages`
 --
 
-INSERT INTO `messages` (`messageid`, `message`, `scheduled_at`, `destination_phone_number`, `userid`, `created_at`, `scheduled_status`, `submitted_at`, `submitted_status`, `whatsapp_api_message_id`) VALUES
-(20, 'message to send for scheduling', '2022-07-19 16:26:00.000000', '9163214034', 2, '2022-07-18 14:41:07.000000', 0, '2022-07-19 16:26:06.000000', 202, '');
+INSERT INTO `messages` (`messageid`, `message`, `scheduled_at`, `destination_phone_number`, `userid`, `created_at`, `scheduled_status`, `submitted_at`, `submitted_status_code`, `submitted_status`, `whatsapp_api_message_id`) VALUES
+(20, 'message to send for scheduling', '2022-07-19 16:26:00.000000', '919163214034', 2, '2022-07-18 14:41:07.000000', 0, '2022-07-21 07:11:08.000000', 202, 'submitted', '98e4811e-2c48-4ae8-88b3-a2aaf26c6c8b'),
+(21, 'message to send for scheduling', '2022-07-21 04:16:00.000000', '919163214034', 2, '2022-07-21 04:11:43.000000', 0, '2022-07-21 07:11:09.000000', 202, 'submitted', 'bb8f0f02-0e91-46a8-9d46-0530636a905e'),
+(22, 'message to send for scheduling', '2022-07-21 04:22:00.000000', '919163214034', 2, '2022-07-21 04:22:42.000000', 0, '2022-07-21 07:11:10.000000', 202, 'submitted', 'd6db32da-1ed7-4b3d-920f-639511935baf'),
+(23, 'message to send for scheduling', '2022-07-21 04:27:00.000000', '919163214034', 2, '2022-07-21 04:26:33.000000', 0, '2022-07-21 07:11:10.000000', 202, 'submitted', 'fc7bef37-88c9-402f-bf99-07c95d2092a9'),
+(24, 'message to send for scheduling', '2022-07-21 07:15:00.000000', '919163214034', 2, '2022-07-21 07:21:37.000000', 0, '2022-07-21 07:21:08.000000', 202, 'submitted', 'a7b2b49c-4af5-4538-8352-b4e3ca2a2c18');
 
 -- --------------------------------------------------------
 
@@ -168,7 +173,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `messageid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `messageid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `mycart`

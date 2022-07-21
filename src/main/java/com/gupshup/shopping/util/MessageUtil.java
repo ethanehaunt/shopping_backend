@@ -6,12 +6,17 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.gupshup.shopping.entity.Message;
 import org.springframework.stereotype.Service;
 import java.io.UnsupportedEncodingException;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.OutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.function.Function;
 import java.util.Map;
@@ -22,16 +27,17 @@ public class MessageUtil {
 	
     final private String CHARSET = "UTF-8";
     final private String BASEURL = "https://api.gupshup.io/sm/api/v1/msg";
-    final private String SENDER = "9163214034";
-    final private String SRCNAME = "sivasaiWhatsAppAPI";
-    final private String APIKEY = "7lh5yhdz7krvgcjb2tj6m24vltgl2pxr";
+    final private String SENDER = "917834811114";
+    final private String SRCNAME = "shoppingAPI";
+    final private String APIKEY = "ivshzmzfq4nnff808torbjaer5r9kr7v";
 
     private HttpURLConnection httpConn;
     private Map<String, Object> queryParams;
 
-    public Integer sendWhatsAppMessage(Message msg) {
+    public  Map<String,String> sendWhatsAppMessage(Message msg) {
 
-        int status = 0;
+        //initiate response map
+        Map<String,String> response = new HashMap<String,String>();
         
         //construct query parameters from msg
         settingTheQueryParams(msg);     
@@ -53,15 +59,43 @@ public class MessageUtil {
             byte[] postDataBytes = this.getParamsByte(queryParams);
             httpConn.getOutputStream().write(postDataBytes);
             
-            //getting the API response
-            status = httpConn.getResponseCode();
+            response = gettingTheResponseString();
+            response.put("statuscode",Integer.toString(httpConn.getResponseCode()));
 
         }
         catch(Exception e){
             System.out.println(e);
         }
 
-        return status;
+        return response;
+    }
+
+    private Map<String,String> gettingTheResponseString(){
+
+        ByteArrayOutputStream result = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        String responseString = "";
+        int length;
+        
+        try{
+            while ((length = httpConn.getInputStream().read(buffer)) != -1) {
+                result.write(buffer, 0, length);
+            }
+            responseString = result.toString(CHARSET);
+        }
+        catch(UnsupportedEncodingException e){
+           e.printStackTrace();
+        }
+        catch (IOException e) {  
+            e.printStackTrace();  
+        }
+
+        Gson gson = new Gson();
+        Type mapType = new TypeToken<Map<String,String>>() {}.getType();
+        Map<String,String> response =  gson.fromJson(responseString,mapType);
+
+
+        return response;
     }
     
     //get message as json param
